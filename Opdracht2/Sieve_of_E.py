@@ -9,27 +9,32 @@ N = int(sys.argv[1])
 filename = sys.argv[2]
 
 # define output
-output = open('prime.dat', 'w')
+output = open(filename, 'w')
 
-count = 0
+count = 2
+s = set(range(2, N))
 
 # start timing
 T1 = time.perf_counter()
 
-# select and print prime numbers
-for num in range(1, N):
-   # prime numbers are greater than 1
-   if num > 1:
-       for i in range(2,num):
-           if (num % i) == 0:
-               break
-       else:
-           output.write(str(num) + '\n')
-           count += 1
+# select numbers 
+for num in range(2, N):
+    i = 2
+    # remove all numbers which are not prime numbers
+    while num*i <= N:
+        if num*i in s:
+            s.remove(num*i)
+            count += 1
+        i += 1    
+
+# show all prime number in set
+results = map(lambda x: x, s)
+
+# display the results
+for result in results:
+    output.write(str(result) + '\n')    
 
 # end timing
 T2 = time.perf_counter()
-print('Found ', count, ' Prime numbers smaller than ', N, ' in ', T2 - T1, 'sec.')
-output.write(str('Found ') + str(count) + str(' Prime numbers smaller than ') + str(N) + str(' in ') + str(T2 - T1) + str(' sec.'))
-
-
+print('Found ', (N - count), ' Prime numbers smaller than ', N, ' in ', T2 - T1, 'sec.')
+output.write(str('Found ') + str(N - count) + str(' Prime numbers smaller than ') + str(N) + str(' in ') + str(T2 - T1) + str(' sec.'))
