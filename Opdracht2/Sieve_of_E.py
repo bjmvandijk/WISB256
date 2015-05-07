@@ -27,7 +27,7 @@ for num in range(2, N):
             count += 1
         i += 1    
 
-# show all prime number in set
+# get all prime numbers in set
 results = map(lambda x: x, s)
 
 # display the results
