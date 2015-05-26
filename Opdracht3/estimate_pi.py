@@ -34,4 +34,4 @@ for i in range(0, N):
 	hits += drop_needle(L)
 
 print(str(hits) + ' hits in ' + str(N) + ' tries')
-print('Pi =', (2*N / hits))
+print('Pi =', (2*N*L / hits))
